@@ -61,10 +61,9 @@
 ```bash
 # 克隆项目
 git clone <repository-url>
-cd wechat_article_skills
+复制三个文件夹到你的/.Claude/skills目录下
+cd 任意目录，启动Claude code，输入“/skills” 查看是否加载成功
 
-# 安装 Python 依赖
-pip install -r requirements.txt  # 如果有的话
 ```
 
 ### 典型工作流程
