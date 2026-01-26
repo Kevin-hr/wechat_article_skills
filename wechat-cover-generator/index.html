@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信公众号封面生成器 - 极简格栅风</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f0f0;
+        }
+        
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .industrial-line {
+            position: absolute;
+            background-color: white;
+            z-index: 10;
+        }
+
+        .corner-accent {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #10b981; /* Tailwind emerald-500 */
+            z-index: 20;
+        }
+        
+        /* 强制宽高比容器 */
+        .aspect-ratio-box {
+            position: relative;
+            width: 100%;
+            padding-bottom: 29.85%; /* 1 / 3.35 * 100% */
+        }
+        
+        .aspect-ratio-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+
+    <!-- 控制面板 -->
+    <div class="bg-white p-6 rounded-lg shadow-lg mb-8 w-full max-w-4xl">
+        <h1 class="text-2xl font-bold mb-4 text-gray-800">极简格栅风封面生成器</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">主标题 (换行用空格分隔)</label>
+                <input type="text" id="input-title" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black" value="投了100份简历 为什么没人理你？">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">副标题 / 作者</label>
+                <input type="text" id="input-subtitle" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black" value="职场观察 · CAREER">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">朋友圈封面文字 (4个字)</label>
+                <input type="text" id="input-timeline" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black" value="求职 攻略">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Emoji 图片 URL</label>
+                <input type="text" id="input-emoji" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black" value="https://s2.loli.net/2025/03/24/pBmlncEYkodSVA6.png">
+            </div>
+        </div>
+        <button onclick="updateCover()" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition mr-2">更新预览</button>
+        <button onclick="downloadCover()" class="bg-emerald-600 text-white px-6 py-2 rounded hover:bg-emerald-700 transition"><i class="fas fa-download mr-2"></i>下载封面</button>
+    </div>
+
+    <!-- 预览区域容器 -->
+    <div class="w-full max-w-5xl shadow-2xl bg-black" id="capture-container">
+        <!-- 3.35:1 比例容器 -->
+        <div class="aspect-ratio-box">
+            <div class="aspect-ratio-content flex">
+                
+                <!-- 左侧主封面 (2.35:1) -->
+                <div class="h-full relative bg-black text-white overflow-hidden border-r border-gray-800 grid-bg group" style="width: 70.15%;">
+                    <!-- 工业风装饰线条 -->
+                    <div class="industrial-line top-4 left-4 w-12 h-[1px]"></div>
+                    <div class="industrial-line top-4 left-4 w-[1px] h-12"></div>
+                    <div class="corner-accent top-4 left-4"></div>
+
+                    <div class="industrial-line bottom-4 right-4 w-12 h-[1px]"></div>
+                    <div class="industrial-line bottom-4 right-4 w-[1px] h-12"></div>
+                    
+                    <!-- 顶部信息栏 -->
+                    <div class="absolute top-6 left-12 right-12 flex justify-between items-center z-10 opacity-80">
+                        <div class="text-xs tracking-[0.2em] font-mono">WECHAT COVER DESIGN</div>
+                        <div class="text-xs font-mono flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            VOL.01
+                        </div>
+                    </div>
+
+                    <!-- 核心内容区 -->
+                    <div class="absolute inset-0 flex flex-col justify-center px-12 z-0">
+                        <!-- 装饰性背景字 -->
+                        <div class="absolute right-[-5%] top-[20%] text-[12rem] font-black text-white opacity-[0.03] leading-none pointer-events-none select-none">
+                            WHY
+                        </div>
+
+                        <!-- 标题分割 -->
+                        <div class="space-y-4 relative">
+                            <div class="inline-block bg-white text-black px-2 py-0.5 text-xs font-bold tracking-widest mb-2 transform -rotate-1 origin-bottom-left">
+                                <span id="preview-subtitle">职场观察 · CAREER</span>
+                            </div>
+                            
+                            <h1 class="text-6xl font-black leading-tight tracking-tight">
+                                <span class="block mb-2" id="preview-title-1">投了100份简历</span>
+                                <span class="block relative pl-16">
+                                    <i class="fas fa-arrow-right absolute left-0 top-1/2 -translate-y-1/2 text-4xl text-emerald-500"></i>
+                                    <span class="border-b-4 border-emerald-500 pb-1" id="preview-title-2">为什么没人理你？</span>
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- 底部装饰 -->
+                    <div class="absolute bottom-6 left-12 flex items-center gap-4 text-xs text-gray-500 font-mono">
+                        <div>ID: 2026-03-24</div>
+                        <div class="w-12 h-[1px] bg-gray-700"></div>
+                        <div>READING TIME: 5MIN</div>
+                    </div>
+                </div>
+
+                <!-- 右侧朋友圈封面 (1:1) -->
+                <div class="h-full relative bg-black text-white overflow-hidden grid-bg flex flex-col items-center justify-center p-4" style="width: 29.85%;">
+                    <!-- 装饰框 -->
+                    <div class="absolute inset-4 border border-gray-800"></div>
+                    <div class="corner-accent top-4 right-4"></div>
+                    <div class="corner-accent bottom-4 left-4 bg-white"></div>
+
+                    <!-- 居中大字 -->
+                    <div class="relative z-10 flex flex-col items-center gap-2 transform rotate-0 hover:scale-105 transition duration-500">
+                        <!-- 上面两个字 -->
+                        <div class="flex gap-4">
+                            <div class="w-16 h-16 bg-white text-black flex items-center justify-center text-4xl font-black rounded-sm shadow-[4px_4px_0px_rgba(16,185,129,1)]" id="preview-tl-1">
+                                求
+                            </div>
+                            <div class="w-16 h-16 bg-zinc-900 border border-gray-700 flex items-center justify-center text-4xl font-black rounded-sm" id="preview-tl-2">
+                                职
+                            </div>
+                        </div>
+                        <!-- 下面两个字 -->
+                        <div class="flex gap-4">
+                            <div class="w-16 h-16 bg-zinc-900 border border-gray-700 flex items-center justify-center text-4xl font-black rounded-sm" id="preview-tl-3">
+                                攻
+                            </div>
+                            <div class="w-16 h-16 bg-emerald-600 flex items-center justify-center text-4xl font-black rounded-sm shadow-[4px_4px_0px_rgba(255,255,255,0.2)]" id="preview-tl-4">
+                                略
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emoji装饰 -->
+                    <img id="preview-emoji" src="https://s2.loli.net/2025/03/24/pBmlncEYkodSVA6.png" class="absolute bottom-6 right-6 w-12 h-12 opacity-80 drop-shadow-lg animate-bounce" alt="emoji">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateCover() {
+            const title = document.getElementById('input-title').value;
+            const subtitle = document.getElementById('input-subtitle').value;
+            const timeline = document.getElementById('input-timeline').value.replace(/\s+/g, ''); // 去除空格
+            const emoji = document.getElementById('input-emoji').value;
+
+            // 更新标题（简单分割逻辑）
+            const parts = title.split(' ');
+            document.getElementById('preview-title-1').textContent = parts[0] || '标题第一行';
+            document.getElementById('preview-title-2').textContent = parts.slice(1).join(' ') || '标题第二行';
+
+            document.getElementById('preview-subtitle').textContent = subtitle;
+            document.getElementById('preview-emoji').src = emoji;
+
+            // 更新朋友圈文字（取前4个字）
+            const tlChars = timeline.padEnd(4, ' ').split('');
+            document.getElementById('preview-tl-1').textContent = tlChars[0];
+            document.getElementById('preview-tl-2').textContent = tlChars[1];
+            document.getElementById('preview-tl-3').textContent = tlChars[2];
+            document.getElementById('preview-tl-4').textContent = tlChars[3];
+        }
+
+        function downloadCover() {
+            const container = document.getElementById('capture-container');
+            
+            html2canvas(container, {
+                scale: 2, // 提高清晰度
+                useCORS: true, // 允许跨域图片
+                backgroundColor: '#000000'
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `wechat-cover-${Date.now()}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
