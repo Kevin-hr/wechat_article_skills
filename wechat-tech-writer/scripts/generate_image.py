@@ -110,8 +110,9 @@ class DALLEImageGenerator(ImageGenerator):
     
     def _get_api_key(self) -> str:
         api_key = os.environ.get('OPENAI_API_KEY')
+        # 如果环境变量没有设置，尝试使用传入的 kwargs 中的 key (由 main 函数处理)
         if not api_key:
-            raise ValueError("请设置环境变量 OPENAI_API_KEY")
+             return "dummy_key_if_base_url_provided" # 如果使用了自定义 Base URL，可能不需要标准的 key，或者由调用方保证
         return api_key
     
     def generate(self, prompt: str, output_path: str, **kwargs) -> str:
@@ -120,11 +121,24 @@ class DALLEImageGenerator(ImageGenerator):
         
         参考: https://platform.openai.com/docs/api-reference/images
         """
-        url = "https://api.openai.com/v1/images/generations"
+        base_url = kwargs.get("base_url", "https://api.openai.com/v1")
+        if base_url.endswith('/'):
+            base_url = base_url[:-1]
         
+        url = f"{base_url}/images/generations"
+        
+        # 优先使用传入的 api_key，否则使用 self.api_key
+        api_key = kwargs.get("api_key") or self.api_key
+        if api_key == "dummy_key_if_base_url_provided" and not kwargs.get("api_key"):
+             # 如果真的是 dummy，检查是否必须要 key。对于自定义 endpoint，通常还是需要的。
+             # 这里抛出异常提示用户
+             if "openai.com" in base_url:
+                 raise ValueError("请设置环境变量 OPENAI_API_KEY")
+             api_key = "sk-placeholder" # 对于某些转发服务，可能允许任意 key
+
         headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {self.api_key}"
+            "Authorization": f"Bearer {api_key}"
         }
         
         # DALL-E 3参数
@@ -239,6 +253,16 @@ def main():
         help="代理地址 (如: http://127.0.0.1:7890 或 socks5://127.0.0.1:1080)"
     )
 
+    parser.add_argument(
+        "--base-url",
+        help="OpenAI API Base URL (例如: https://ai.t8star.cn/v1)"
+    )
+    
+    parser.add_argument(
+        "--api-key",
+        help="API Key (如果不通过环境变量提供)"
+    )
+
     args = parser.parse_args()
     
     # 创建输出目录
@@ -250,7 +274,22 @@ def main():
     
     try:
         # 创建生成器实例
-        generator = generator_class()
+        # 对于需要 API Key 的生成器，如果在环境变量中没找到，可能在 generate 时传入
+        try:
+            generator = generator_class()
+        except ValueError:
+            # 如果初始化失败（通常是因为缺环境变量），我们尝试创建一个"空"实例，
+            # 只要 generate 方法支持传入 key 即可。
+            # 但目前的基类设计是在 __init__ 检查 key。
+            # 我们可以临时设置环境变量，或者修改基类。
+            # 为了最小化修改，如果提供了 --api-key，我们先设置环境变量
+            if args.api_key:
+                os.environ['OPENAI_API_KEY'] = args.api_key
+                os.environ['GEMINI_API_KEY'] = args.api_key
+                generator = generator_class()
+            else:
+                 # 再次尝试，如果失败则抛出
+                 generator = generator_class()
         
         # 准备参数
         kwargs = {
@@ -260,6 +299,13 @@ def main():
         # 添加代理配置
         if args.proxy:
             kwargs["proxy"] = args.proxy
+
+        # 添加 Base URL 和 API Key
+        if args.base_url:
+            kwargs["base_url"] = args.base_url
+        
+        if args.api_key:
+            kwargs["api_key"] = args.api_key
 
         if args.api in ["dalle", "openai"]:
             if args.size:
