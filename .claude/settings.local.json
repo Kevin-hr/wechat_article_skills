@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(set:*)",
+      "Bash(done:*)",
+      "Bash(git ls-tree:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(ALL_PROXY=\"\" all_proxy=\"\" python:*)",
+      "Bash(dir:*)",
+      "WebFetch(domain:docs.claude.com)",
+      "Bash(git checkout:*)"
+    ]
+  }
+}

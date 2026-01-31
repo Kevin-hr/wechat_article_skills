@@ -14,12 +14,6 @@ import argparse
 from pathlib import Path
 from typing import Optional, Dict, Any
 
-# Fix Windows encoding
-if sys.platform == "win32":
-    import io
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
-
 
 class WeChatPublisher:
     """微信公众号草稿发布器"""
@@ -781,6 +775,20 @@ class WeChatPublisher:
 
         print(f"✓ 草稿创建成功!")
         print(f"  media_id: {result.get('media_id')}")
+
+        try:
+            log_dir = Path(__file__).resolve().parent.parent / "logs"
+            log_dir.mkdir(parents=True, exist_ok=True)
+            log_file = log_dir / "verify.log"
+            with open(log_file, "a", encoding="utf-8") as f:
+                f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} Created Draft\n")
+                f.write(f"Title:   {title}\n")
+                f.write(f"Author:  {author}\n")
+                f.write(f"CoverID: {thumb_media_id}\n")
+                f.write(f"media_id: {result.get('media_id')}\n")
+                f.write("-" * 50 + "\n")
+        except Exception:
+            pass
 
         return result
 

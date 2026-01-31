@@ -1,16 +1,9 @@
-# -*- coding: utf-8 -*-
 import json
 import requests
 import os
 import sys
 import datetime
 from pathlib import Path
-
-# Fix Windows encoding
-if sys.platform == "win32":
-    import io
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 # 加载配置
 try:
