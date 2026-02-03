@@ -1,0 +1,181 @@
+{
+  "timestamp": "2026-02-03T23:00:02.619563",
+  "total_checked": 18,
+  "passed": 14,
+  "warnings": 3,
+  "failed": 1,
+  "details": [
+    {
+      "skill": "comfyui-image-generator",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "image-assistant",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "logs",
+      "status": "fail",
+      "checks": [],
+      "warnings": [],
+      "errors": [
+        "缺少 SKILL.md"
+      ]
+    },
+    {
+      "skill": "prd-doc-writer",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "project-amplifier",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "req-change-workflow",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "self-evolver",
+      "status": "warning",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [
+        "references/ 目录中的文件未被引用: health-rules.md",
+        "references/ 目录中的文件未被引用: metrics.md",
+        "references/ 目录中的文件未被引用: update-strategy.md",
+        "references/ 目录中的文件未被引用: usage-tracking.md"
+      ],
+      "errors": []
+    },
+    {
+      "skill": "skill-creator",
+      "status": "warning",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [
+        "references/ 目录中的文件未被引用: output-patterns.md",
+        "references/ 目录中的文件未被引用: workflows.md"
+      ],
+      "errors": []
+    },
+    {
+      "skill": "thought-mining",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "wechat-article-formatter",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "wechat-cover-generator",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "wechat-draft-publisher",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "wechat-draft-verifier",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "wechat-image-recognizer",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "wechat-product-manager-writer",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "wechat-tech-writer",
+      "status": "warning",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [
+        "references/ 目录中的文件未被引用: image-guidelines.md"
+      ],
+      "errors": []
+    },
+    {
+      "skill": "wechat-text-cover-generator",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "skill": "wechat-viral-cover",
+      "status": "pass",
+      "checks": [
+        "YAML frontmatter 格式正确"
+      ],
+      "warnings": [],
+      "errors": []
+    }
+  ]
+}

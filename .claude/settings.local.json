@@ -10,7 +10,17 @@
       "Bash(ALL_PROXY=\"\" all_proxy=\"\" python:*)",
       "Bash(dir:*)",
       "WebFetch(domain:docs.claude.com)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(del:*)",
+      "WebFetch(domain:mp.weixin.qq.com)",
+      "WebFetch(domain:www.clawhub.com)",
+      "Bash(curl:*)",
+      "Bash(forfiles:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(gh pr view:*)",
+      "Bash(git remote get-url:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(gh pr list:*)"
     ]
   }
 }

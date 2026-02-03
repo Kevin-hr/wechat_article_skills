@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信公众号文章</title>
+    <style>
+        :root {
+            
+  --primary-color: #7c3aed;        /* 主色调：紫色 */
+  --secondary-color: #3b82f6;      /* 辅助色：蓝色 */
+  --text-color: #333333;           /* 正文颜色 */
+  --text-light: #666666;           /* 浅色文字 */
+  --background: #ffffff;           /* 背景色 */
+  --code-bg: #282c34;              /* 代码块背景 */
+  --code-color: #abb2bf;           /* 代码文字 */
+  --quote-border: #7c3aed;         /* 引用边框 */
+  --quote-bg: #f8f5ff;             /* 引用背景 */
+  --border-radius: 8px;            /* 圆角半径 */
+
+        }
+
+        /* 基础样式 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            background: #fff;
+            padding: 20px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- ⚠️ 标题请在微信公众号编辑器中单独填写，HTML 中已自动移除 H1 标题 -->
+    <p style="margin: 18px 0; text-align: justify; word-break: break-word"><img alt="封面" src="cover.png" style="max-width: 100%; height: auto; display: block; margin: 24px auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1)"/></p>
+<hr style="border: none; height: 2px; background: linear-gradient(90deg, transparent 0%, #7c3aed 50%, transparent 100%); margin: 32px 0"/>
+<h2 style="font-size: 24px; font-weight: 600; color: #1a1a1a; margin: 28px 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid transparent; background-image: linear-gradient(90deg, #7c3aed 0%, #3b82f6 50%, transparent 50%); background-size: 100% 2px; background-position: 0 100%; background-repeat: no-repeat; line-height: 1.4">01</h2>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">事情是这样的。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">我有两个手机，一个工作号，一个私人号。微信、Telegram、WhatsApp 七八个群，每天消息轰炸。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">最崩溃的是什么？是那种"在Telegram看到的重要通知，转头就忘了在哪"的无力感。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">直到我装了 OpenClaw。</p>
+<h2 style="font-size: 24px; font-weight: 600; color: #1a1a1a; margin: 28px 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid transparent; background-image: linear-gradient(90deg, #7c3aed 0%, #3b82f6 50%, transparent 50%); background-size: 100% 2px; background-position: 0 100%; background-repeat: no-repeat; line-height: 1.4">02</h2>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">这玩意儿说实话，刚装的时候我觉得就是个玩具。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">Node.js 装环境，配置 Gateway，折腾了半小时。但跑起来那瞬间，我服了。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word"><strong style="font-weight: 600; color: #1a1a1a">一句话：在自己电脑上装了个 AI 秘书，它能读我所有消息。</strong></p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">不是那种云端隐私泄露的"智能助手"，是跑在我自己设备上的。</p>
+<h2 style="font-size: 24px; font-weight: 600; color: #1a1a1a; margin: 28px 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid transparent; background-image: linear-gradient(90deg, #7c3aed 0%, #3b82f6 50%, transparent 50%); background-size: 100% 2px; background-position: 0 100%; background-repeat: no-repeat; line-height: 1.4">03</h2>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">干了件小事。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">让 OpenClaw 监控 Telegram 的技术群，发现有人发 Claude 相关的内容，自动同步到微信小号。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">就这么简单。但我爽了整整一周。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">因为以前要翻七八个群才能找到的干货，现在微信消息直接推过来。分类、标注、清爽。</p>
+<h2 style="font-size: 24px; font-weight: 600; color: #1a1a1a; margin: 28px 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid transparent; background-image: linear-gradient(90deg, #7c3aed 0%, #3b82f6 50%, transparent 50%); background-size: 100% 2px; background-position: 0 100%; background-repeat: no-repeat; line-height: 1.4">04</h2>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">研究了下它的架构，有点意思。</p>
+<div class="codehilite"><pre style="background: #282c34; color: #abb2bf; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 20px 0; line-height: 1.6; position: relative"><span></span><code style='background: #f5f5f5; color: #e83e8c; padding: 2px 6px; border-radius: 4px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.9em; font-weight: 500'>消息渠道 (Telegram/WhatsApp/微信)
+        │
+        ▼
+   Gateway 控制平面
+        │
+   ┌────┼────┐
+   ▼    ▼    ▼
+ Agent  CLI  节点
+</code></pre></div>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word"><strong style="font-weight: 600; color: #1a1a1a">Gateway 是大脑</strong>，所有消息先到这里。<strong style="font-weight: 600; color: #1a1a1a">节点是手</strong>，在我电脑上执行具体操作。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">最戳我的是这个设计：数据不过云，所有东西在我自己机器上。</p>
+<h2 style="font-size: 24px; font-weight: 600; color: #1a1a1a; margin: 28px 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid transparent; background-image: linear-gradient(90deg, #7c3aed 0%, #3b82f6 50%, transparent 50%); background-size: 100% 2px; background-position: 0 100%; background-repeat: no-repeat; line-height: 1.4">05</h2>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">用了两周，说说真实感受。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word"><strong style="font-weight: 600; color: #1a1a1a">爽的地方：</strong><br/>
+- 多平台消息统一管理，再也不用切来切去<br/>
+- Voice Wake 语音唤醒，喊一声就能干活<br/>
+- Skills 市场，装个插件就能扩展功能</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word"><strong style="font-weight: 600; color: #1a1a1a">不爽的地方：</strong><br/>
+- 第一次配置确实麻烦<br/>
+- macOS/Windows 体验有点差异<br/>
+- 有些渠道还在 beta</p>
+<h2 style="font-size: 24px; font-weight: 600; color: #1a1a1a; margin: 28px 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid transparent; background-image: linear-gradient(90deg, #7c3aed 0%, #3b82f6 50%, transparent 50%); background-size: 100% 2px; background-position: 0 100%; background-repeat: no-repeat; line-height: 1.4">06</h2>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">但最让我感慨的，是这个项目的定位。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">现在 AI Agent 满天飞，都是"云端服务"，都是"把你的数据给我们"。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">OpenClaw 反着来：<strong style="font-weight: 600; color: #1a1a1a">你的设备，你的 AI，你的隐私。</strong></p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">136k star 不是没道理的。大家苦"隐私换便利"久矣。</p>
+<h2 style="font-size: 24px; font-weight: 600; color: #1a1a1a; margin: 28px 0 20px 0; padding-bottom: 12px; border-bottom: 2px solid transparent; background-image: linear-gradient(90deg, #7c3aed 0%, #3b82f6 50%, transparent 50%); background-size: 100% 2px; background-position: 0 100%; background-repeat: no-repeat; line-height: 1.4">07</h2>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">所以这篇想说啥？</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word"><strong style="font-weight: 600; color: #1a1a1a">如果你也跟我一样，被七八个通讯工具折磨，试试 OpenClaw。</strong></p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">不用搞什么大动作，就让它帮你同步个消息、自动化个提醒。</p>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word">那种"终于不用手动搬砖"的感觉，值得。</p>
+<hr style="border: none; height: 2px; background: linear-gradient(90deg, transparent 0%, #7c3aed 50%, transparent 100%); margin: 32px 0"/>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word"><strong style="font-weight: 600; color: #1a1a1a">官网</strong>：https://openclaw.ai<br/>
+<strong style="font-weight: 600; color: #1a1a1a">GitHub</strong>：https://github.com/openclaw/openclaw</p>
+<hr style="border: none; height: 2px; background: linear-gradient(90deg, transparent 0%, #7c3aed 50%, transparent 100%); margin: 32px 0"/>
+<p style="margin: 18px 0; text-align: justify; word-break: break-word"><em style="font-style: italic; color: #333333">你有啥跨平台消息管理的痛点？评论区聊聊。</em></p>
+</body>
+</html>
