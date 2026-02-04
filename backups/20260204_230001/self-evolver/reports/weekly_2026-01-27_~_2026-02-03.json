@@ -1,0 +1,27 @@
+{
+  "type": "weekly",
+  "period": "2026-01-27 ~ 2026-02-03",
+  "generated_at": "2026-02-03T23:00:02.772913",
+  "summary": {
+    "total_calls": 0,
+    "success_rate": 0.0,
+    "unique_skills_used": 0,
+    "most_used_skill": "N/A",
+    "least_used_skill": "N/A"
+  },
+  "usage_analysis": {
+    "skill_usage_ranking": [],
+    "peak_hours": [],
+    "success_by_skill": {}
+  },
+  "performance_metrics": {},
+  "recommendations": [],
+  "evolution_suggestions": [
+    "'image-assistant' 缺少 references 目录，建议拆分长文档",
+    "'thought-mining' 缺少 references 目录，建议拆分长文档",
+    "'wechat-cover-generator' 缺少 references 目录，建议拆分长文档",
+    "'wechat-draft-verifier' 缺少 references 目录，建议拆分长文档",
+    "'wechat-image-recognizer' 缺少 references 目录，建议拆分长文档",
+    "'wechat-text-cover-generator' 缺少 references 目录，建议拆分长文档"
+  ]
+}
